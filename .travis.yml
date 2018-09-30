@@ -1,0 +1,20 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t thuriaux/react-test -f client/Dockerfile.dev client/
+
+script:
+  - docker run thuriaux/react-test npm run test -- --coverage
+
+after_success:
+  - docker build -t thuriaux/multi-client client/
+  - docker build -t thuriaux/multi-nginx nginx/
+  - docker build -t thuriaux/multi-server server/
+  - docker build -t thuriaux/multi-worker worker/
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push thuriaux/multi-client
+  - docker push thuriaux/multi-server
+  - docker push thuriaux/multi-nginx
+  - docker push thuriaux/multi-worker
