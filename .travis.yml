@@ -18,3 +18,17 @@ after_success:
   - docker push thuriaux/multi-server
   - docker push thuriaux/multi-nginx
   - docker push thuriaux/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: ca-central-1
+  app: multi-docker
+  env: MultiDocker-env
+  bucker_name: elasticbeanstalk-ca-central-1-250512644452
+  bucker_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
+
