@@ -1,6 +1,6 @@
 docker build -t thuriaux/multi-client:latest -t thuriaux/multi-client:$SHA -f ./client/Dockerfile ./client
 docker build -t thuriaux/multi-server:latest -t thuriaux/multi-server:$SHA -f ./server/Dockerfile ./server
-docker build -t thuriaux/multi-worker:latest -t thuriaux/multi-worker:$SHA-f ./worker/Dockerfile ./worker
+docker build -t thuriaux/multi-worker:latest -t thuriaux/multi-worker:$SHA -f ./worker/Dockerfile ./worker
 
 docker push thuriaux/multi-client:latest
 docker push thuriaux/multi-server:latest
