@@ -11,6 +11,6 @@ docker push thuriaux/multi-server:$SHA
 docker push thuriaux/multi-worker:$SHA
 
 kubectl apply -f k8s
-kubectl set image deployments/client-deployment server=thuriaux/multi-client:$SHA
+kubectl set image deployments/client-deployment client=thuriaux/multi-client:$SHA
 kubectl set image deployments/server-deployment server=thuriaux/multi-server:$SHA
-kubectl set image deployments/worker-deployment server=thuriaux/multi-worker:$SHA
+kubectl set image deployments/worker-deployment worker=thuriaux/multi-worker:$SHA
